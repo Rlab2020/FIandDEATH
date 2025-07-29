@@ -1,0 +1,43 @@
+## protein = normalized NPX values for individual proteins 
+## fic0 = frailty index exposure as categorical exposure
+## follow = follow-up period
+## dm2 = type 2 diabetes (1 or 0)
+
+
+
+library(lme4);library(lmerTest);library(survival);library(survminer);library(glmnet);library(mediation)
+
+
+
+## ASSOCIATIONS OF FRAILTY INDEX EXPOSURE WITH INDIVIDUAL PROTEINS AND PROTEOMIC SIGNATURES
+
+model1 <- glm(protein~fic0+age+sex+imd+income+edu+bmi+ethnic+whr0+nosmoking+drinkingM+regular+dieth+sleeph+fastt+sampleage+season, family='gaussian', data0)
+model2 <- glm(signature~fic0+age+sex+imd+income+edu+bmi+ethnic+whr0+nosmoking+drinkingM+regular+dieth+sleeph+fastt+sampleage+season, family='gaussian', data0)
+
+# The associations of frailty index with each individual protein and its corresponding proteomic signature were obtained by running the above code.
+
+
+
+## ASSOCIATIONS OF INDIVIDUAL PROTEINS WITH DEATH
+
+model3<-coxph(Surv(follow,DEATH)~protein+age+sex+imd+income+edu+bmi+ethnic+whr0+nosmoking+drinkingM+regular+dieth+sleeph+fastt+sampleage+season+htnp+dmp+crp, data0)
+
+# The associations of each individual protein with death were obtained by running the above code.
+
+
+
+## ASSOCIATIONS OF FRAILTY INDEX EXPOSURE WITH DEATH
+
+model4<-coxph(Surv(follow,DEATH)~fic0+age+sex+ses+bmi+ethnic+whr0+nosmoking+drinkingM+regular+dieth+sleeph+htnp+dmp+crp, data0)
+model5<-coxph(Surv(follow,DEATH)~signaure+age+sex+ses+bmi+ethnic+whr0+nosmoking+drinkingM+regular+dieth+sleeph+fastt+sampleage+season+htnp+dmp+crp, data0)
+model6<-coxph(Surv(follow,DEATH)~fic0+signaure+age+sex+ses+bmi+ethnic+whr0+nosmoking+drinkingM+regular+dieth+sleeph+fastt+sampleage+season+htnp+dmp+crp, data0)
+
+# The associations of frailty index with each death were obtained by running the above code.
+
+
+
+## MEDIATION ANALYSIS
+
+mediation <- mediate(modelMediate, modelDirect, treat = fic0, mediator = protein)
+
+# The mediation effect of each individual protein in the association of frailty index with each death were obtained by running the above code.
