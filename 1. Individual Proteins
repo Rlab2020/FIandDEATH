@@ -1,7 +1,7 @@
 ## protein = normalized NPX values for individual proteins 
 ## fic0 = frailty index exposure as categorical exposure
 ## follow = follow-up period
-## dm2 = type 2 diabetes (1 or 0)
+## DEATH = each death
 
 
 
