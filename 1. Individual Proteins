@@ -28,9 +28,9 @@ model3<-coxph(Surv(follow,DEATH)~protein+age+sex+imd+income+edu+bmi+ethnic+whr0+
 
 ## ASSOCIATIONS OF FRAILTY INDEX EXPOSURE WITH DEATH
 
-model4<-coxph(Surv(follow,DEATH)~fic0+age+sex+ses+bmi+ethnic+whr0+nosmoking+drinkingM+regular+dieth+sleeph+htnp+dmp+crp, data0)
-model5<-coxph(Surv(follow,DEATH)~signaure+age+sex+ses+bmi+ethnic+whr0+nosmoking+drinkingM+regular+dieth+sleeph+fastt+sampleage+season+htnp+dmp+crp, data0)
-model6<-coxph(Surv(follow,DEATH)~fic0+signaure+age+sex+ses+bmi+ethnic+whr0+nosmoking+drinkingM+regular+dieth+sleeph+fastt+sampleage+season+htnp+dmp+crp, data0)
+model4<-coxph(Surv(follow,DEATH)~fic0+age+sex+ses+bmi+ethnic+whr0, data0)
+model5<-coxph(Surv(follow,DEATH)~fic0+age+sex+ses+bmi+ethnic+whr0+nosmoking+drinkingM+regular+dieth+sleeph, data0)
+model6<-coxph(Surv(follow,DEATH)~fic0+age+sex+ses+bmi+ethnic+whr0+nosmoking+drinkingM+regular+dieth+sleeph+htnp+dmp+crp, data0)
 
 # The associations of frailty index with each death were obtained by running the above code.
 
