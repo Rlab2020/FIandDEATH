@@ -1,1 +1,30 @@
+## protein = normalized NPX values for individual proteins 
+## fic0 = frailty index exposure as categorical exposure
+## follow = follow-up period
+## DEATH = each death
 
+
+library(lme4);library(lmerTest);library(survival);library(survminer);library(glmnet);library(mediation)
+
+
+## ASSOCIATIONS OF FRAILTY INDEX EXPOSURE WITH DEATH
+
+model1<-coxph(Surv(follow,DEATH)~fic0+age+sex+ses+bmi+ethnic+whr0, data0)
+model2<-coxph(Surv(follow,DEATH)~fic0+age+sex+ses+bmi+ethnic+whr0+nosmoking+drinkingM+regular+dieth+sleeph, data0)
+model3<-coxph(Surv(follow,DEATH)~fic0+age+sex+ses+bmi+ethnic+whr0+nosmoking+drinkingM+regular+dieth+sleeph+htnp+dmp+crp, data0)
+
+
+## ASSOCIATIONS OF MODULES WITH DEATH
+
+model4<-coxph(Surv(follow,DEATH)~module+age+sex+ses+bmi+ethnic+whr0+fastt+season+sampleage, data0)
+model5<-coxph(Surv(follow,DEATH)~module+age+sex+ses+bmi+ethnic+whr0+nosmoking+drinkingM+regular+dieth+sleeph+fastt+season+sampleage, data0)
+model6<-coxph(Surv(follow,DEATH)~module+age+sex+ses+bmi+ethnic+whr0+nosmoking+drinkingM+regular+dieth+sleeph+htnp+dmp+crp+fastt+season+sampleage, data0)
+
+# The associations of each proteomic signature with each death were obtained by running the above code.
+
+
+## MEDIATION ANALYSIS
+
+mediation <- mediate(modelMediate, modelDirect, treat = fic0, mediator =  module)
+
+# The mediation effect of each proteomic signature in the association of frailty index with each death were obtained by running the above code.
