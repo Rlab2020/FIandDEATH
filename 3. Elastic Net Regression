@@ -1,0 +1,17 @@
+## proteins = column names of proteins
+## frailty index = frailty index exposure as categorical exposure
+
+
+
+library(glmnet)
+
+
+
+## ELASTIC NET REGRESSION FOR SIGNATURE CONSTRUCTION
+covariates <- c("age","sex","ses","bmi","ethnic","whr0","nosmoking","drinkingM","sleeph","regular","dieth","fastt","sampleage","season")
+X <- data0 %>% select(all_of(proteins),all_of(covariates))
+X<- makeX(X)
+Y <- data0 %>% select(airpollutant)
+elastic_net_model <- glmnet(X, Y, alpha = 0.5, lambda = lambda_1se, penalty.factor = ifelse(colnames(X) %in% covariates, 0, 1))
+
+# The elastic net regression of each air pollutant were performed by running the above code.
