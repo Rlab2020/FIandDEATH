@@ -14,7 +14,7 @@ model2<-coxph(Surv(follow,DEATH)~fic0+age+sex+ses+bmi+ethnic+whr0+nosmoking+drin
 model3<-coxph(Surv(follow,DEATH)~fic0+age+sex+ses+bmi+ethnic+whr0+nosmoking+drinkingM+regular+dieth+sleeph+htnp+dmp+crp, data0)
 
 
-## ASSOCIATIONS OF PROTEOMIC SIGNATURES WITH T2D
+## ASSOCIATIONS OF PROTEOMIC SIGNATURES WITH DEATH
 
 model4<-coxph(Surv(follow,DEATH)~signature+age+sex+ses+bmi+ethnic+whr0+fastt+season+sampleage, data0)
 model5<-coxph(Surv(follow,DEATH)~signature+age+sex+ses+bmi+ethnic+whr0+nosmoking+drinkingM+regular+dieth+sleeph+fastt+season+sampleage, data0)
